@@ -1,0 +1,44 @@
+declare module 'obj/f1' {
+    declare function a(): string;
+    /** f1func1 comment */
+    export function f1func1(): void;
+    /** f1func2 comment */
+    export function f1func2(): void;
+}
+declare module 'lib/d1' {
+	export function d1Func1(): boolean;
+}
+declare module boks {
+    import 'obj/f1';
+	import {resolve} from 'path';
+    export { resolve };
+    /** f1func1 comment */
+    export function f1func1(): void;
+    
+    export namespace f2Namespace {
+    }
+
+    /** my new comment */
+	export namespace f3add {
+    
+    /** f1func1 comment */
+    export function func1(): void;
+    
+    /** f1func1 comment */
+    export function f1func1(): void;
+    // some other comment
+    /**
+     * a new type
+     */
+    export type f3Type: string | boolean;
+}
+    export class MyClass{
+		constructor();
+	}
+	
+	/** f1func2 comment */
+    export function func2(): void;
+    
+    export { d1Func1 } from 'lib/d1';
+    
+}

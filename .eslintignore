@@ -1,0 +1,5 @@
+__test__/**/*.ts
+node_modules/*
+**/*.json
+playground/*
+src/cli/cleandts-cli

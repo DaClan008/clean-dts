@@ -1,0 +1,148 @@
+{
+    "/": {
+        "name": "/",
+        "code": "\r\n\r\n\r\n\r\n\r\n",
+        "comment": ""
+    },
+    "a": {
+        "name": "a",
+        "internals": {
+            "a": {
+                "owner": "a",
+                "name": "a",
+                "type": 1,
+                "comment": "",
+                "prename": " function ",
+                "portType": "ex",
+                "code": "(): string;"
+            }
+        },
+        "code": "\r\n\texport function a(): string;\r\n",
+        "comment": "",
+        "type": 2,
+        "allused": true
+    },
+    "b": {
+        "name": "b",
+        "internals": {
+            "b": {
+                "owner": "b",
+                "name": "b",
+                "type": 1,
+                "comment": "",
+                "prename": " function ",
+                "portType": "ex",
+                "code": "(): string;"
+            }
+        },
+        "code": "\r\n\texport function b(): string;\r\n\tdeclare module \"test\" {\r\n\t\texport function t(): string;\r\n\t}\r\n",
+        "comment": "",
+        "type": 2,
+        "hasDeclare": true,
+        "allused": true
+    },
+    "abc": {
+        "name": "abc",
+        "exports": {
+            "abc2": {
+                "from": "",
+                "name": "abcfunc",
+                "as": "abc2",
+                "portType": "ex",
+                "complex": "abcfunc as abc2",
+                "positionID": "abc1",
+                "len": 1,
+                "group": true,
+                "value": {
+                    "owner": "abc",
+                    "name": "abcfunc",
+                    "type": 1,
+                    "comment": "",
+                    "prename": " function ",
+                    "portType": "ex",
+                    "code": "(def: string, other?: boolean, t=false): string;"
+                }
+            }
+        },
+        "exportStr": [
+            "a",
+            "b"
+        ],
+        "groups": {
+            "abc1": [
+                "abc2"
+            ]
+        },
+        "internals": {
+            "abcfunc": {
+                "owner": "abc",
+                "name": "abcfunc",
+                "type": 1,
+                "comment": "",
+                "prename": " function ",
+                "portType": "ex",
+                "code": "(def: string, other?: boolean, t=false): string;"
+            }
+        },
+        "code": "\r\n\texport function abcfunc(def: string, other?: boolean, t=false): string;\r\n\t\n--replaceabc1=[grpex]\r\r\n\t\n--replaceabc2=a[allex]\r\n\t\n--replaceabc3=b[allex]\r\n",
+        "comment": "",
+        "type": 2,
+        "isMod": true,
+        "includeArr": [
+            "a",
+            "b"
+        ],
+        "newName": "MOD",
+        "allused": true
+    },
+    "dontChange": {
+        "name": "dontChange",
+        "exportStr": [
+            "a",
+            "b"
+        ],
+        "importStr": [
+            "abc"
+        ],
+        "code": "\r\r\n\t\n--replacedontChange4=abc[allim]\r\n\t\n--replacedontChange5=a[allex]\n\t\n--replacedontChange6=b[allex]\r\n\r\n",
+        "comment": "",
+        "type": 2,
+        "isMod": true,
+        "includeArr": [
+            "abc",
+            "a",
+            "b"
+        ]
+    },
+    "root": {
+        "name": "root",
+        "exports": {
+            "abc": {
+                "from": "def",
+                "name": "abc",
+                "as": "",
+                "portType": "ex",
+                "complex": "",
+                "positionID": "root10",
+                "len": 1,
+                "value": false,
+                "include": true
+            }
+        },
+        "exportStr": [
+            "a",
+            "b",
+            "path"
+        ],
+        "code": "\r\r\n\t\n--replaceroot7=a[allex]\r\n\t\n--replaceroot8=b[allex]\r\n\t\n--replaceroot9=path[allex]\r\n\t\n--replaceroot10=abc[ex]\r\n\r\n",
+        "comment": "",
+        "type": 2,
+        "isMod": true,
+        "includeArr": [
+            "a",
+            "b",
+            "path"
+        ],
+        "newName": "dontChange"
+    }
+}

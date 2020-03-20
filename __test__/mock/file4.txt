@@ -1,0 +1,28 @@
+declare module "a" {
+	export function a(): string;
+}
+declare module "b" {
+	export function b(): string;
+	declare module "test" {
+		export function t(): string;
+	}
+}
+declare module "abc" {
+	export function abcfunc(def: string, other?: boolean, t=false): string;
+	export {abcfunc as abc2};
+	/** $mod="MOD" */
+	export * from "a";
+	export * from "b";
+}
+declare module "dontChange" {
+	import "abc";
+	export * from "a"
+	export * from "b";
+
+}
+declare module "root" {
+	/** $mod="part" */
+	export * from "a";
+	export * from "abc";
+	export { a } from 'dontChange';
+}

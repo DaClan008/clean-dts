@@ -1,0 +1,37 @@
+	import {resolve} from "path";
+
+    declare function a(): string;
+    /** f1func1 comment */
+    export function f1func1(): void;
+    /** f1func2 comment */
+    export function f1func2(): void;
+
+
+    export namespace f2Namespace {
+    }
+
+
+    /** my new func1 */
+    export {func1};
+    export {f1func1};
+    // some other comment
+    /**
+     * a new type
+     */
+    export type f3Type: string | boolean;
+
+
+    export default class MyClass {
+		constructor();
+	}
+    export type myType =  {
+        some:string;
+    }
+
+
+	export function d1Func1(): boolean;
+
+
+    /** $mod="boks" */
+    export { f1func1, resolve };
+	export {f1func2 as func2};

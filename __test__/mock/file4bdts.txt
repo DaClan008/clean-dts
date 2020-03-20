@@ -1,0 +1,41 @@
+declare module MOD {
+	export function abcfunc(def: string, other?: boolean, t=false): string;
+	export { abc2 };
+	
+	
+	export function a(): string;
+
+	
+	export function b(): string;
+	declare module "test" {
+		export function t(): string;
+	}
+
+}
+declare module dontChange {
+	import 'abc';
+	export * from 'a';
+	export * from 'b';
+
+}
+declare module part {
+	
+	export function a(): string;
+
+	
+	export function abcfunc(def: string, other?: boolean, t=false): string;
+	
+	export function abc2(def: string, other?: boolean, t=false): string;
+	
+	export function a(): string;
+
+	
+	export function b(): string;
+	declare module "test" {
+		export function t(): string;
+	}
+
+
+	export { a } from 'dontChange';
+	
+}

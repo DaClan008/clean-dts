@@ -1,0 +1,362 @@
+{
+    "/": {
+        "name": "/",
+        "code": "\r\n\r\n\r\n\r\n\r\n\r\n",
+        "comment": ""
+    },
+    "obj/f1": {
+        "name": "obj/f1",
+        "internals": {
+            "f1func1": {
+                "owner": "obj/f1",
+                "name": "f1func1",
+                "type": 1,
+                "comment": "/** f1func1 comment */\r\n    ",
+                "prename": " function ",
+                "portType": "ex",
+                "code": "(): void;",
+                "used": true
+            },
+            "f1func2": {
+                "owner": "obj/f1",
+                "name": "f1func2",
+                "type": 1,
+                "comment": "/** f1func2 comment */\r\n    ",
+                "prename": " function ",
+                "portType": "ex",
+                "code": "(): void;",
+                "used": true
+            }
+        },
+        "code": "\r\n    declare function a(): string;\r\n    /** f1func1 comment */\r\n    export function f1func1(): void;\r\n    /** f1func2 comment */\r\n    export function f1func2(): void;\r\n",
+        "comment": "",
+        "type": 2,
+        "hasDeclare": true,
+        "used": true
+    },
+    "obj/f2": {
+        "name": "obj/f2",
+        "internals": {
+            "f2Namespace": {
+                "owner": "obj/f2",
+                "name": "f2Namespace",
+                "type": 2,
+                "comment": "",
+                "prename": " namespace ",
+                "portType": "ex",
+                "code": "\r\n    "
+            }
+        },
+        "code": "\r\n    export namespace f2Namespace {\r\n    }\r\n",
+        "comment": "",
+        "type": 2,
+        "allused": true
+    },
+    "obj/f3": {
+        "name": "obj/f3",
+        "exports": {
+            "func1": {
+                "from": "",
+                "name": "func1",
+                "portType": "ex",
+                "complex": "func1",
+                "positionID": "obj/f33",
+                "len": 1,
+                "group": true,
+                "comment": "/** my new func1 */\r\n    ",
+                "value": {
+                    "owner": "obj/f1",
+                    "name": "f1func1",
+                    "type": 1,
+                    "comment": "/** f1func1 comment */\r\n    ",
+                    "prename": " function ",
+                    "portType": "ex",
+                    "code": "(): void;",
+                    "used": true
+                }
+            },
+            "f1func1": {
+                "from": "",
+                "name": "f1func1",
+                "portType": "ex",
+                "complex": "f1func1",
+                "positionID": "obj/f34",
+                "len": 1,
+                "group": true,
+                "value": {
+                    "owner": "obj/f1",
+                    "name": "f1func1",
+                    "type": 1,
+                    "comment": "/** f1func1 comment */\r\n    ",
+                    "prename": " function ",
+                    "portType": "ex",
+                    "code": "(): void;",
+                    "used": true
+                }
+            }
+        },
+        "imports": {
+            "func1": {
+                "from": "obj/f1",
+                "name": "f1func1",
+                "as": "func1",
+                "portType": "im",
+                "complex": "f1func1 as func1",
+                "positionID": "obj/f31",
+                "len": 1,
+                "group": true,
+                "value": {
+                    "owner": "obj/f1",
+                    "name": "f1func1",
+                    "type": 1,
+                    "comment": "/** f1func1 comment */\r\n    ",
+                    "prename": " function ",
+                    "portType": "ex",
+                    "code": "(): void;",
+                    "used": true
+                }
+            },
+            "f1func1": {
+                "from": "obj/f1",
+                "name": "f1func1",
+                "portType": "im",
+                "complex": "f1func1",
+                "positionID": "obj/f32",
+                "len": 1,
+                "group": true,
+                "value": {
+                    "owner": "obj/f1",
+                    "name": "f1func1",
+                    "type": 1,
+                    "comment": "/** f1func1 comment */\r\n    ",
+                    "prename": " function ",
+                    "portType": "ex",
+                    "code": "(): void;",
+                    "used": true
+                }
+            }
+        },
+        "groups": {
+            "obj/f31": [
+                "func1"
+            ],
+            "obj/f32": [
+                "f1func1"
+            ],
+            "obj/f33": [
+                "func1"
+            ],
+            "obj/f34": [
+                "f1func1"
+            ]
+        },
+        "internals": {
+            "f3Type": {
+                "owner": "obj/f3",
+                "name": "f3Type",
+                "comment": "/**\r\n     * a new type\r\n     */\r\n    ",
+                "prename": " type ",
+                "portType": "ex",
+                "code": ": string | boolean;"
+            }
+        },
+        "code": "\r\n\t\n--replaceobj/f31=obj/f1[grpim]\r\n\t\n--replaceobj/f32=obj/f1[grpim]\r\n    \n--replaceobj/f33=[grpex]\r\n    \n--replaceobj/f34=[grpex]\r\n    // some other comment\r\n    /**\r\n     * a new type\r\n     */\r\n    export type f3Type: string | boolean;\r\n",
+        "comment": "",
+        "type": 2,
+        "allused": true
+    },
+    "obj/default": {
+        "name": "obj/default",
+        "internals": {
+            "MyClass": {
+                "owner": "obj/default",
+                "name": "MyClass",
+                "type": 2,
+                "comment": "",
+                "prename": " default class ",
+                "portType": "ex",
+                "code": "\r\n\t\tconstructor();\r\n\t",
+                "used": true
+            },
+            "myType": {
+                "owner": "obj/default",
+                "name": "myType",
+                "type": 0,
+                "comment": "",
+                "prename": " type ",
+                "portType": "ex",
+                "code": "  {\r\n        some:string;\r\n    }"
+            }
+        },
+        "code": "\r\n    export default class MyClass {\r\n\t\tconstructor();\r\n\t}\r\n    export type myType =  {\r\n        some:string;\r\n    }\r\n",
+        "comment": "",
+        "type": 2,
+        "used": true
+    },
+    "lib/d1": {
+        "name": "lib/d1",
+        "internals": {
+            "d1Func1": {
+                "owner": "lib/d1",
+                "name": "d1Func1",
+                "type": 1,
+                "comment": "",
+                "prename": " function ",
+                "portType": "ex",
+                "code": "(): boolean;"
+            }
+        },
+        "code": "\r\n\texport function d1Func1(): boolean;\r\n",
+        "comment": "",
+        "type": 2
+    },
+    "index": {
+        "name": "index",
+        "exports": {
+            "f1func1": {
+                "from": "",
+                "name": "f1func1",
+                "portType": "ex",
+                "complex": " f1func1, resolve ",
+                "positionID": "index7",
+                "len": 2,
+                "group": true,
+                "value": {
+                    "owner": "obj/f1",
+                    "name": "f1func1",
+                    "type": 1,
+                    "comment": "/** f1func1 comment */\r\n    ",
+                    "prename": " function ",
+                    "portType": "ex",
+                    "code": "(): void;",
+                    "used": true
+                },
+                "include": true
+            },
+            "resolve": {
+                "from": "",
+                "name": "resolve",
+                "portType": "ex",
+                "complex": " f1func1, resolve ",
+                "positionID": "index7",
+                "len": 2,
+                "group": true,
+                "value": false,
+                "include": true
+            },
+            "f3add": {
+                "from": "obj/f3",
+                "name": "*",
+                "as": "f3add",
+                "portType": "ex",
+                "complex": "",
+                "positionID": "index9",
+                "len": 1,
+                "all": true,
+                "comment": "/** my new comment */\r\n\t",
+                "include": true
+            },
+            "MyClass": {
+                "from": "obj/default",
+                "name": "MyClass",
+                "as": "",
+                "portType": "ex",
+                "complex": "",
+                "positionID": "index10",
+                "len": 1,
+                "value": {
+                    "owner": "obj/default",
+                    "name": "MyClass",
+                    "type": 2,
+                    "comment": "",
+                    "prename": " default class ",
+                    "portType": "ex",
+                    "code": "\r\n\t\tconstructor();\r\n\t",
+                    "used": true
+                },
+                "include": true
+            },
+            "func2": {
+                "from": "obj/f1",
+                "name": "f1func2",
+                "as": "func2",
+                "portType": "ex",
+                "complex": "f1func2 as func2",
+                "positionID": "index11",
+                "len": 1,
+                "group": true,
+                "value": {
+                    "owner": "obj/f1",
+                    "name": "f1func2",
+                    "type": 1,
+                    "comment": "/** f1func2 comment */\r\n    ",
+                    "prename": " function ",
+                    "portType": "ex",
+                    "code": "(): void;",
+                    "used": true
+                },
+                "include": true
+            },
+            "d1Func1": {
+                "from": "lib/d1",
+                "name": "d1Func1",
+                "portType": "ex",
+                "complex": " d1Func1 ",
+                "positionID": "index12",
+                "len": 1,
+                "group": true,
+                "value": {
+                    "owner": "lib/d1",
+                    "name": "d1Func1",
+                    "type": 1,
+                    "comment": "",
+                    "prename": " function ",
+                    "portType": "ex",
+                    "code": "(): boolean;"
+                }
+            }
+        },
+        "exportStr": [
+            "obj/f2",
+            "obj/f1"
+        ],
+        "imports": {
+            "resolve": {
+                "from": "path",
+                "name": "resolve",
+                "portType": "im",
+                "complex": "resolve",
+                "positionID": "index6",
+                "len": 1,
+                "group": true,
+                "value": false
+            }
+        },
+        "importStr": [
+            "obj/f1"
+        ],
+        "groups": {
+            "index6": [
+                "resolve"
+            ],
+            "index7": [
+                "f1func1",
+                "resolve"
+            ],
+            "index11": [
+                "func2"
+            ],
+            "index12": [
+                "d1Func1"
+            ]
+        },
+        "code": "\r\n    \n--replaceindex5=obj/f1[allim]\r\n\t\n--replaceindex6=path[grpim]\r\r\n    \n--replaceindex7=[grpex]\r\n    \n--replaceindex8=obj/f2[allex]\r\n    \n--replaceindex9=f3add[ex]\r\n    \n--replaceindex10=MyClass[ex]\r\n\t\n--replaceindex11=obj/f1[grpex]\r\n    \r\n    \n--replaceindex12=lib/d1[grpex]\r\n",
+        "comment": "",
+        "type": 2,
+        "isMod": true,
+        "includeArr": [
+            "obj/f2"
+        ],
+        "newName": "boks"
+    }
+}

@@ -1,0 +1,40 @@
+declare module MOD {
+	export function abcfunc(def: string, other?: boolean, t=false): string;
+	export { abc2 };
+	
+	
+	export function a(): string;
+
+	
+	export function b(): string;
+	declare module "test" {
+		export function t(): string;
+	}
+
+}
+declare module dontChange {
+	import 'abc';
+	
+	export function a(): string;
+
+	
+	export function b(): string;
+	declare module "test" {
+		export function t(): string;
+	}
+
+
+
+	
+	export function a(): string;
+
+	
+	export function b(): string;
+	declare module "test" {
+		export function t(): string;
+	}
+
+	export * from 'path';
+	export abc from 'def';
+
+}
