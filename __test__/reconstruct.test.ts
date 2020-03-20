@@ -31,7 +31,7 @@ describe('testing reconstruction', () => {
 		});
 	}
 	test('reconstruct function on file 2', () => {
-		expect(reconstruct(c(file2))).toEqual(c(file2DTS));
+		expect(c(reconstruct(file2))).toEqual(c(file2DTS));
 		clear(file2);
 	});
 	test('reconstruct function on file 2 All', () => {
@@ -40,7 +40,7 @@ describe('testing reconstruction', () => {
 	});
 	test('reconstruct function on file 2 All', () => {
 		const result = reconstruct(file2All, { all: '' });
-		expect(a(result)).toEqual(c(file2AllDts));
+		expect(c(result)).toEqual(c(file2AllDts));
 		clear(file2All);
 	});
 	test('reconstruct function on file 2 All name', () => {

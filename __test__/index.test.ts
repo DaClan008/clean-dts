@@ -4,6 +4,10 @@ import { resolve } from 'path';
 import { Options } from '../src/types/types';
 import * as rimraf from 'rimraf';
 
+function c(txt: string): string {
+	return txt.replace(/[\r\n\t ]+/g, ' ');
+}
+
 describe('testing synchronous code', () => {
 	afterEach(async () => {
 		await new Promise(res => {
@@ -20,7 +24,7 @@ describe('testing synchronous code', () => {
 		const result = cleanDtsSync(null, file2);
 		const file2Result = readFileSync(resolve(__dirname, 'mock/file2dts.txt')).toString();
 
-		expect(result).toEqual(file2Result);
+		expect(c(result as string)).toEqual(c(file2Result));
 	});
 	test('use file location and destination root', () => {
 		const options: Options = {
@@ -67,7 +71,7 @@ describe('testing synchronous code', () => {
 		const result = await cleanDts(null, file2);
 		const file2Result = readFileSync(resolve(__dirname, 'mock/file2dts.txt')).toString();
 
-		expect(result).toEqual(file2Result);
+		expect(c(result as string)).toEqual(c(file2Result));
 	});
 	test('use file location and destination root', async () => {
 		const options: Options = {
