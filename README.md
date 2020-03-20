@@ -4,6 +4,8 @@
 [![Coverage Status](https://coveralls.io/repos/github/DaClan008/clean-dts/badge.svg?branch=master)](https://coveralls.io/github/DaClan008/clean-dts?branch=master)
 [![codecov](https://codecov.io/gh/DaClan008/clean-dts/branch/master/graph/badge.svg)](https://codecov.io/gh/DaClan008/clean-dts)
 ![npm](https://img.shields.io/npm/v/clean-dts)
+![npm](https://img.shields.io/npm/dw/clean-dts)
+![NPM](https://img.shields.io/npm/l/clean-dts)
 
 Attempting to create a clean d.ts file when writing node modules mainly. The idea is to create a single d.ts outputfile. The problem with typescript's own d.ts files is the following:
 
