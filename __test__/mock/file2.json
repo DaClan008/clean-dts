@@ -350,7 +350,7 @@
                 "d1Func1"
             ]
         },
-        "code": "\r\n    \n--replaceindex5=obj/f1[allim]\r\n\t\n--replaceindex6=path[grpim]\r\r\n    \n--replaceindex7=[grpex]\r\n    \n--replaceindex8=obj/f2[allex]\r\n    \n--replaceindex9=f3add[ex]\r\n    \n--replaceindex10=MyClass[ex]\r\n\t\n--replaceindex11=obj/f1[grpex]\r\n    \r\n    \n--replaceindex12=lib/d1[grpex]\r\n",
+        "code": "\r\n    \n--replaceindex5=obj/f1[allim]\r\n\t\n--replaceindex6=path[grpim]\r\n    \n--replaceindex7=[grpex]\r\n    \n--replaceindex8=obj/f2[allex]\r\n    \n--replaceindex9=f3add[ex]\r\n    \n--replaceindex10=MyClass[ex]\r\n\t\n--replaceindex11=obj/f1[grpex]\r\n    \r\n    \n--replaceindex12=lib/d1[grpex]\r\n",
         "comment": "",
         "type": 2,
         "isMod": true,

@@ -10,7 +10,7 @@ declare module 'lib/d1' {
 }
 declare module boks {
     import 'obj/f1';
-	import {resolve} from 'path';
+	import {resolve} from 'path';
     export { resolve };
     /** f1func1 comment */
     export function f1func1(): void;

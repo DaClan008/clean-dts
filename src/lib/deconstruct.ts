@@ -159,7 +159,7 @@ function rename(modGroup: moduleGroup, options: Options): moduleGroup {
 
 	keys.forEach(key => {
 		const mod = modGroup[key];
-		const modReg = /(\n[ \t]*)?\/\*+\s*\$mod=?\s*(['"])?(.*?)['"]?\s*\*\/\s*?(((.|\s)*?)(\/\*+\s*\$modend\s*\*\/)|((.|\s)*))?/;
+		const modReg = /(\r?\n\r?[ \t]*)?\/\*+\s*\$mod=?\s*(['"])?(.*?)['"]?\s*\*\/\s*?(((.|\s)*?)(\/\*+\s*\$modend\s*\*\/)|((.|\s)*))?/;
 		let modCode = mod.code;
 		while (modReg.test(modCode)) {
 			result[key].isMod = true;

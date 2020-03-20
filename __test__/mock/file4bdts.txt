@@ -1,7 +1,7 @@
 declare module MOD {
 	export function abcfunc(def: string, other?: boolean, t=false): string;
 	export { abc2 };
-	
+	
 	
 	export function a(): string;
 
@@ -18,14 +18,14 @@ declare module dontChange {
 	export * from 'b';
 
 }
-declare module part {
+declare module part {
 	
 	export function a(): string;
 
 	
 	export function abcfunc(def: string, other?: boolean, t=false): string;
 	
-	export function abc2(def: string, other?: boolean, t=false): string;
+	export function abc2(def: string, other?: boolean, t=false): string;
 	
 	export function a(): string;
 

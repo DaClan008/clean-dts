@@ -84,7 +84,7 @@
                 "code": "(def: string, other?: boolean, t=false): string;"
             }
         },
-        "code": "\r\n\texport function abcfunc(def: string, other?: boolean, t=false): string;\r\n\t\n--replaceabc1=[grpex]\r\r\n\t\n--replaceabc2=a[allex]\r\n\t\n--replaceabc3=b[allex]\r\n",
+        "code": "\r\n\texport function abcfunc(def: string, other?: boolean, t=false): string;\r\n\t\n--replaceabc1=[grpex]\r\n\t\n--replaceabc2=a[allex]\r\n\t\n--replaceabc3=b[allex]\r\n",
         "comment": "",
         "type": 2,
         "isMod": true,
@@ -132,7 +132,7 @@
                 "a"
             ]
         },
-        "code": "\r\r\n\t\n--replaceroot7=a[allex]\r\n\t\n--replaceroot8=abc[allex]\r\n\t\n--replaceroot9=dontChange[grpex]\r\n",
+        "code": "\r\n\t\n--replaceroot7=a[allex]\r\n\t\n--replaceroot8=abc[allex]\r\n\t\n--replaceroot9=dontChange[grpex]\r\n",
         "comment": "",
         "type": 2,
         "isMod": true,

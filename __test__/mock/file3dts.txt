@@ -1,4 +1,4 @@
-
+
 	
 	export function a(): string;
 
@@ -12,7 +12,7 @@
 declare module MOD {
 	export function abcfunc(def: string, other?: boolean, t=false): string;
 	export { abc2 };
-	
+	
 	
 	export function a(): string;
 
@@ -23,7 +23,7 @@ declare module MOD {
 	}
 
 }
-declare module dontChange {
+declare module dontChange {
 	import 'abc';
 	
 	export function a(): string;
