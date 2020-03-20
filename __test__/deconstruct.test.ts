@@ -1,17 +1,39 @@
 import { parseCode } from '../src/lib/deconstruct';
 import { resolve } from 'path';
 import { readFileSync } from 'fs';
-import { moduleGroup } from '../src/types/types';
+import { moduleGroup, altered, members } from '../src/types/types';
 const file2 = readFileSync(resolve(__dirname, 'mock/file2.txt')).toString();
 const file3 = readFileSync(resolve(__dirname, 'mock/file3.txt')).toString();
 const res2 = require('./mock/file2.json');
 const res2a = require('./mock/file2All.json');
 const res3 = require('./mock/file3.json');
 
+function cleanObj(obj: any): any {
+	const newObj = obj;
+	if (!obj) return obj;
+	if (newObj.code) newObj.code = newObj.code.replace(/[\n\r\t ]+/g, ' ');
+	if (newObj.comment) newObj.comment = newObj.comment.replace(/[\r\n\t ]+/g, ' ');
+	return newObj;
+}
+
+function cleanEx(obj: members): members {
+	const newObj = cleanObj(obj);
+	Object.keys(obj).forEach(key => {
+		newObj[key] = cleanObj(newObj[key]);
+		if (newObj[key].value) newObj[key].value = cleanObj(newObj[key].value);
+	});
+	return newObj;
+}
+
 function c(obj: moduleGroup): moduleGroup {
 	const newObj = obj;
 	Object.keys(obj).forEach(key => {
-		newObj[key].code = newObj[key].code.replace(/[\r\n\t ]+/g, ' ');
+		newObj[key] = cleanObj(newObj[key]);
+		// value
+		if (newObj[key].exports) newObj[key].exports = cleanEx(newObj[key].exports);
+		if (newObj[key].imports) newObj[key].imports = cleanEx(newObj[key].imports);
+		if (newObj[key].internals)
+			newObj[key].internals = cleanEx(newObj[key].internals as members);
 	});
 	return newObj;
 }
