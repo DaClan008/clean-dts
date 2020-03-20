@@ -239,6 +239,18 @@ The above can also be activated through commandPrompt.
 cleandts [file1] [file2...] --arg
 ```
 
+Please note however. If the clean-dts has not been globall installed (i.e. by running "npm install clean-dts -g"), the cli might not work by calling cleandts.
+
+A solution will then be to call:
+
+```bash
+nodemodules/.bin/cleandts [file]...
+
+OR
+
+npx cleandts [file]...
+```
+
 If folder instead of a file is passed as argument, all d.ts files will be used that is found inside the folder and it's subfolders.
 
 If no folder or file is passed in as argument, then all d.ts files will be send through the cleanDts function that is in the folder from which cleandts is called from and it's subfolders.
