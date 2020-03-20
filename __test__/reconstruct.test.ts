@@ -19,6 +19,10 @@ const file3bDTS = readFileSync(resolve(__dirname, 'mock/file3bdts.txt')).toStrin
 const file4DTS = readFileSync(resolve(__dirname, 'mock/file4dts.txt')).toString();
 const file4bDTS = readFileSync(resolve(__dirname, 'mock/file4bdts.txt')).toString();
 
+function c(val: string) {
+	return val.replace(/[\n\r\t ]+/g, ' ');
+}
+
 describe('testing reconstruction', () => {
 	function clear(obj: moduleGroup) {
 		const keys = Object.keys(obj);
@@ -27,37 +31,39 @@ describe('testing reconstruction', () => {
 		});
 	}
 	test('reconstruct function on file 2', () => {
-		expect(reconstruct(file2)).toEqual(file2DTS);
+		expect(reconstruct(c(file2))).toEqual(c(file2DTS));
 		clear(file2);
 	});
 	test('reconstruct function on file 2 All', () => {
-		expect(reconstruct(file2All, { all: '/' })).toEqual(file2AllDts);
+		expect(c(reconstruct(file2All, { all: '/' }))).toEqual(c(file2AllDts));
 		clear(file2All);
 	});
 	test('reconstruct function on file 2 All', () => {
 		const result = reconstruct(file2All, { all: '' });
-		expect(result).toEqual(file2AllDts);
+		expect(a(result)).toEqual(c(file2AllDts));
 		clear(file2All);
 	});
 	test('reconstruct function on file 2 All name', () => {
 		const result = reconstruct(file2AllName, { all: 'someName' });
-		expect(result).toEqual(file2AllNameDts);
+		expect(c(result)).toEqual(c(file2AllNameDts));
 		clear(file2AllName);
 	});
 	test('reconstruct function on file 3', () => {
-		expect(reconstruct(file3)).toEqual(file3DTS);
+		expect(c(reconstruct(file3))).toEqual(c(file3DTS));
 		clear(file3);
 	});
 	test('reconstruct function on file 3b (more than one module same name)', () => {
-		expect(reconstruct(file3b)).toEqual(file3bDTS);
+		expect(c(reconstruct(file3b))).toEqual(c(file3bDTS));
 		clear(file3b);
 	});
 	test('reconstruct function on file 4 (StoreStrategy: keepAll)', () => {
-		expect(reconstruct(file4, { storeStrategy: Strategies.keepAll })).toEqual(file4DTS);
+		expect(c(reconstruct(file4, { storeStrategy: Strategies.keepAll }))).toEqual(c(file4DTS));
 		clear(file4);
 	});
 	test('reconstruct function on file 4 (StoreStrategy: keepPartial)', () => {
-		expect(reconstruct(file4b, { storeStrategy: Strategies.keepPartial })).toEqual(file4bDTS);
+		expect(c(reconstruct(file4b, { storeStrategy: Strategies.keepPartial }))).toEqual(
+			c(file4bDTS),
+		);
 		clear(file4b);
 	});
 });
