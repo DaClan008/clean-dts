@@ -13,15 +13,20 @@ import { cleanDtsSync, cleanDts } from '..';
  */
 function filterFiles(files: string[], baseExt = ''): string[] {
 	const result: string[] = [];
-	if (result.length === 0) result.push('./');
+	if (files.length === 0) files.push(process.cwd());
 
 	for (let i = files.length - 1; i >= 0; i--) {
 		const file = resolve(files[i]);
 		if (existsSync(file)) {
 			// see if it is directory or file
 			try {
-				const dirContent = readdirSync(file);
+				let dirContent = readdirSync(file);
 				if (dirContent.length > 0) {
+					dirContent = dirContent
+						.filter(content => content !== 'node_modules')
+						.map(content => {
+							return resolve(file, content);
+						});
 					const content = filterFiles(dirContent);
 					result.push(...content);
 				}

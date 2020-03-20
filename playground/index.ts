@@ -3,6 +3,7 @@ import { reconstruct } from '../src/lib/reconstruct';
 import { resolve } from 'path';
 import { readFileSync, writeFileSync } from 'fs';
 import { Strategies } from '../src/types/types';
+import { cleanDtsCli } from '../src/cli/cleanDTScli';
 
 const DTS = true;
 
@@ -44,10 +45,12 @@ function createFiles(fileName, options = {}, storeName = '') {
 	if (val) writeFileSync(resolve(`./__test__/mock/${store}.json`), JSON.stringify(val, null, 4));
 }
 
-createFiles('file2');
-createFiles('file2', { all: '/' }, 'file2All');
-createFiles('file2', { all: 'someName' }, 'file2AllName');
-createFiles('file3');
-createFiles('file3b');
-createFiles('file4', { storeStrategy: Strategies.keepAll });
-createFiles('file4', { storeStrategy: Strategies.keepPartial }, 'file4b');
+// createFiles('file2');
+// createFiles('file2', { all: '/' }, 'file2All');
+// createFiles('file2', { all: 'someName' }, 'file2AllName');
+// createFiles('file3');
+// createFiles('file3b');
+// createFiles('file4', { storeStrategy: Strategies.keepAll });
+// createFiles('file4', { storeStrategy: Strategies.keepPartial }, 'file4b');
+
+const a = cleanDtsCli([]);
