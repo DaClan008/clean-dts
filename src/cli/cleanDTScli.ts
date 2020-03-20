@@ -60,8 +60,7 @@ export function cleanDtsCli(args: string[]): void | string | Promise<void | stri
 
 	files = filterFiles(files, options.baseExt);
 	if (files.length === 0) {
-		console.log(resolve('./'));
-		files.push(resolve('./'));
+		files.push(process.cwd());
 	}
 	let resultStr = '';
 	const resultArr: Promise<string | void>[] = [];
