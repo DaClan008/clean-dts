@@ -8,10 +8,10 @@ Attempting to create a clean d.ts file when writing node modules mainly. The ide
 we don't want:
 
 ```ts
-declare module 'some/mod` {
+declare module 'some/mod' {
 	// some code
 }
-declare module 'filename` {
+declare module 'filename' {
 	// some code
 }
 ```
@@ -33,7 +33,7 @@ declare myModule {
 
 ```
 
-This module can be used from [command prompt](./#Cli) or through [code](./#Usage).
+This module can be used from [command prompt](./README.md#Cli) or through [code](./README.md#Usage).
 
 ## Install
 
