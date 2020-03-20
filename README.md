@@ -1,5 +1,7 @@
 # clean-dts
 
+[![Build Status](https://travis-ci.org/DaClan008/clean-dts.svg?branch=master)](https://travis-ci.org/DaClan008/clean-dts)
+
 Attempting to create a clean d.ts file when writing node modules mainly. The idea is to create a single d.ts outputfile. The problem with typescript's own d.ts files is the following:
 
 1. Files can either be converted to d.ts file by keeping the folders structure (i.e. not combined) [we want combined/concatenated d.ts].
