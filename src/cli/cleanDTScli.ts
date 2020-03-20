@@ -59,6 +59,10 @@ export function cleanDtsCli(args: string[]): void | string | Promise<void | stri
 	options.baseExt = parsedArgs.baseExt || parsedArgs.baseext || '';
 
 	files = filterFiles(files, options.baseExt);
+	if (files.length === 0) {
+		console.log(resolve('./'));
+		files.push(resolve('./'));
+	}
 	let resultStr = '';
 	const resultArr: Promise<string | void>[] = [];
 
@@ -68,7 +72,7 @@ export function cleanDtsCli(args: string[]): void | string | Promise<void | stri
 			const result = cleanDtsSync(options);
 			if (result) resultStr += result;
 		} else {
-			resultArr.push(cleanDts(options));
+			resultArr.push(cleanDts(options).catch(err => console.log(err)));
 		}
 	});
 	if (resultStr) return resultStr;
