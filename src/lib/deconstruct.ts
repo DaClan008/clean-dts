@@ -117,7 +117,7 @@ function getExportValues(modGroup: moduleGroup): moduleGroup {
 function rename(modGroup: moduleGroup, options: Options): moduleGroup {
 	const result = modGroup;
 	const keys = Object.keys(modGroup);
-	if (options.all != null) return result;
+	if (options.all != null && options.mod == null) return result;
 
 	const amend = (val: altered): void => {
 		/* istanbul ignore else */
@@ -159,19 +159,22 @@ function rename(modGroup: moduleGroup, options: Options): moduleGroup {
 
 	keys.forEach(key => {
 		const mod = modGroup[key];
-		const modReg = /(\r?\n?\r?[ \t]*)?\/\*+\s*\$mod=?\s*(['"])?(.*?)['"]?\s*\*\/\s*?(((.|\s)*?)(\/\*+\s*\$modend\s*\*\/)|((.|\s)*))?/;
-		let modCode = mod.code;
+		const modReg = /(\r?\n?\r?[ \t]*)?\/\*+ *\$mod(=\s*(['"])?(.*?)['"]?)?\s*\*\/[ \t]*/;
+		let modCode = `${mod.code}|<E>|`;
 		while (modReg.test(modCode)) {
 			result[key].isMod = true;
-			const [, , quote, name, , c1, , , c2] = modReg.exec(mod.code);
-			const code = c1 || c2;
+			const [, , , quote, name = ''] = modReg.exec(mod.code);
+			modCode = modCode.replace(modReg, '|<S>|');
+			const modReg2 = /\|<S>\|((.|\s)*?)((\/\*+\s*\$modend\s*\*\/)|(\|<E>\|))/;
+			const [, code] = modReg2.exec(modCode);
 			alter(code, key);
 			let nme = name.trim();
-			modCode = modCode.replace(modReg, code);
+			modCode = modCode.replace(modReg2, code);
 			if (!quote && !nme) continue;
 			nme = nme || '/';
 			result[key].newName = nme;
 		}
+		modCode = modCode.replace(/\|<E>\|/, '');
 		result[key].code = modCode;
 	});
 
@@ -193,11 +196,26 @@ export function parseCode(code: string, options: Options = {}): moduleGroup {
 	let comment = '';
 	let intCnt = 0;
 	let cnt = 0;
+	const { mod } = options;
+	const mods: { [key: string]: string | 0 } = {};
 	let { all } = options;
 	let space = '';
 	let extra = false;
 	let extraStrt = 0;
 	if (all != null) all = all || '/';
+	if (mod) {
+		const addMod = (m: string): void => {
+			const mSplit = m.split(':');
+			if (mSplit.length > 1) {
+				mods[mSplit[0].trim() || '/'] = mSplit[1].trim() || all || '/';
+			} else mods[m.trim() || '/'] = all || 0;
+		};
+		/* istanbul ignore else: not needed to test */
+		if (Array.isArray(mod)) {
+			mod.forEach(m => addMod(m));
+		} else addMod(mod);
+		all = undefined;
+	}
 
 	const switchModule = (name?: string): void => {
 		const nme = !name ? '/' : name;
@@ -428,6 +446,15 @@ export function parseCode(code: string, options: Options = {}): moduleGroup {
 				break;
 		}
 	}
+	// confirm mods
+	const keys = Object.keys(result);
+	keys.forEach(key => {
+		if (mods[key] != null && !/\/\*\*\s*\$mod(end|=|\s*\*\/)/.test(result[key].code)) {
+			result[key].code = `\n/** $mod${mods[key] !== 0 ? `="${mods[key]}"` : ''} */${
+				result[key].code
+			}`;
+		}
+	});
 	return rename(getExportValues(result), options);
 }
 

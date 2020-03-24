@@ -52,3 +52,5 @@ createFiles('file3');
 createFiles('file3b');
 createFiles('file4', { storeStrategy: Strategies.keepAll });
 createFiles('file4', { storeStrategy: Strategies.keepPartial }, 'file4b');
+createFiles('file5', { mod: ['index', 'lib/d1:index'], all: 'some', restrict: true });
+createFiles('file5', { mod: ['index:', 'lib/d1:index'] }, 'file5b');

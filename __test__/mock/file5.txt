@@ -1,0 +1,42 @@
+declare module "obj/f1" {
+    declare function a(): string;
+    /** f1func1 comment */
+    export function f1func1(): void;
+    /** f1func2 comment */
+    export function f1func2(): void;
+}
+declare module "obj/f2" {
+    export namespace f2Namespace {
+    }
+}
+declare module "obj/f3" {
+	import {f1func1 as func1} from "obj/f1";
+	import {f1func1} from "obj/f1";
+    /** my new func1 */
+    export {func1};
+    export {f1func1};
+    // some other comment
+    /**
+     * a new type
+     */
+    export type f3Type: string | boolean;
+}
+declare module "obj/default" {
+    export default class MyClass {
+		constructor();
+	}
+    export type myType =  {
+        some:string;
+    }
+}
+declare module "lib/d1" {
+	export function d1Func1(): boolean;
+}
+declare module "index" {
+    import "obj/f1";
+	import {resolve} from "path";
+    export { f1func1, resolve };
+    export * from "obj/f2";
+    export MyClass from "obj/default";
+	export {f1func2 as func2} from "obj/f1";
+}

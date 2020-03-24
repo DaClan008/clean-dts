@@ -6,6 +6,8 @@ export type Options = {
 	 * Determmine how the modules should be stored if imported by other modules.
 	 */
 	storeStrategy?: Strategies;
+	mod?: string | string[];
+	restrict?: boolean;
 	/** Change all module names to the value provided here */
 	all?: string;
 	/** The file to parse through (name and location) */

@@ -10,6 +10,8 @@ const file3 = require('./mock/file3.json');
 const file3b = require('./mock/file3b.json');
 const file4 = require('./mock/file4.json');
 const file4b = require('./mock/file4b.json');
+const file5 = require('./mock/file5.json');
+const file5b = require('./mock/file5b.json');
 
 const file2DTS = readFileSync(resolve(__dirname, 'mock/file2dts.txt')).toString();
 const file2AllDts = readFileSync(resolve(__dirname, 'mock/file2Alldts.txt')).toString();
@@ -18,6 +20,8 @@ const file3DTS = readFileSync(resolve(__dirname, 'mock/file3dts.txt')).toString(
 const file3bDTS = readFileSync(resolve(__dirname, 'mock/file3bdts.txt')).toString();
 const file4DTS = readFileSync(resolve(__dirname, 'mock/file4dts.txt')).toString();
 const file4bDTS = readFileSync(resolve(__dirname, 'mock/file4bdts.txt')).toString();
+const file5DTS = readFileSync(resolve(__dirname, 'mock/file5dts.txt')).toString();
+const file5bDTS = readFileSync(resolve(__dirname, 'mock/file5bdts.txt')).toString();
 
 function c(val: string) {
 	return val.replace(/[\n\r\t ]+/g, ' ');
@@ -65,5 +69,15 @@ describe('testing reconstruction', () => {
 			c(file4bDTS),
 		);
 		clear(file4b);
+	});
+	test('reconstruct function on file 5 with mod options and restrict', () => {
+		const options = { mod: ['index', 'lib/d1:index'], all: 'some', restrict: true };
+		expect(c(reconstruct(file5, options))).toEqual(c(file5DTS));
+		clear(file5);
+	});
+	test('reconstruct function on file 5 with mod options without restrict', () => {
+		const options = { mod: ['index:', 'lib/d1:index'] };
+		expect(c(reconstruct(file5b, options))).toEqual(c(file5bDTS));
+		clear(file5b);
 	});
 });

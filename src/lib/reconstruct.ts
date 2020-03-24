@@ -153,6 +153,7 @@ function getCode(mod: altered, modules: moduleGroup, incl = false): string | fal
 function mustUse(mod: altered, options: Options): boolean {
 	const strat = options.storeStrategy ? options.storeStrategy : Strategies.none;
 	if (mod.done) return false;
+	if (options.restrict && !mod.isMod) return false;
 	if (strat === Strategies.keepAll || (!mod.allused && !mod.used) || mod.done) return true;
 	if (mod.isMod || (mod.hasDeclare && !mod.allused)) return true;
 	if (strat === Strategies.none && (mod.used || mod.allused)) return false;
@@ -229,7 +230,7 @@ function getName(name: string): string {
 export function reconstruct(modules: moduleGroup, options: Options = {}): string {
 	let result = '';
 	const mods = { ...modules };
-	const all = options.all === '' ? '/' : options.all;
+	const all = options.mod ? undefined : options.all === '' ? '/' : options.all;
 	const keys = Object.keys(mods);
 
 	const clearText = (txt: string): string => {
@@ -237,14 +238,25 @@ export function reconstruct(modules: moduleGroup, options: Options = {}): string
 		return '';
 	};
 
-	const getCodeCheck = (mod: altered, key: string, ind: number): string => {
+	const getCodeCheck = (mod: altered, key: string): string => {
+		if (
+			mod.newName &&
+			mods[mod.newName] &&
+			mods[mod.newName].newName !== mod.newName &&
+			!mods[mod.newName].done
+		)
+			return ''; // will be dealt with when main mod is called.
 		let code = getCode(mod, mods);
 		/* istanbul ignore else: not sure when code will be false (safety) */
 		if (code) mods[key].done = true;
 		else code = '';
 		code = clearText(code);
-		for (let i = ind + 1, len = keys.length; i < len; i++) {
-			if (mods[keys[i]].newName === key) {
+		for (let i = 0, len = keys.length; i < len; i++) {
+			if (keys[i] === key) continue;
+			if (
+				mods[keys[i]].newName === key ||
+				(mod.newName && mod.newName === mods[keys[i]].newName)
+			) {
 				const c = getCode(mods[keys[i]], mods);
 				/* istanbul ignore else */
 				if (c) {
@@ -260,7 +272,7 @@ export function reconstruct(modules: moduleGroup, options: Options = {}): string
 	for (let i = 0, len = keys.length; i < len; i++) {
 		const mod = mods[keys[i]];
 		if (mustUse(mod, options)) {
-			const code = getCodeCheck(mod, keys[i], i);
+			const code = getCodeCheck(mod, keys[i]);
 			/* istanbul ignore else */
 			if (code && /\s?.\s?/.test(code)) {
 				if (all == null) {

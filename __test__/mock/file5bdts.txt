@@ -1,0 +1,30 @@
+
+    import 'obj/f1';
+	import {resolve} from 'path';
+    export { resolve };
+    /** f1func1 comment */
+    export function f1func1(): void;
+    
+    export namespace f2Namespace {
+    }
+
+    export class MyClass{
+		constructor();
+	}
+	
+	/** f1func2 comment */
+    export function func2(): void;
+declare module 'obj/f3' {
+    export { func1 };
+    
+    export { f1func1 };
+    
+    // some other comment
+    /**
+     * a new type
+     */
+    export type f3Type: string | boolean;
+}
+declare module index {
+	export function d1Func1(): boolean;
+}

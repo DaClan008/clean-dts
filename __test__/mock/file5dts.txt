@@ -1,0 +1,19 @@
+declare module some {
+    import 'obj/f1';
+	import {resolve} from 'path';
+    export { resolve };
+    /** f1func1 comment */
+    export function f1func1(): void;
+    
+    export namespace f2Namespace {
+    }
+
+    export class MyClass{
+		constructor();
+	}
+	
+	/** f1func2 comment */
+    export function func2(): void;
+
+	export function d1Func1(): boolean;
+}
