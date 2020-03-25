@@ -25,6 +25,3 @@ declare module 'obj/f3' {
      */
     export type f3Type: string | boolean;
 }
-declare module index {
-	export function d1Func1(): boolean;
-}

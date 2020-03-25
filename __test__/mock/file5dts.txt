@@ -1,3 +1,6 @@
+declare module index {
+	export function d1Func1(): boolean;
+}
 declare module some {
     import 'obj/f1';
 	import {resolve} from 'path';

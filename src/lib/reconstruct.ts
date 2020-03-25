@@ -242,8 +242,7 @@ export function reconstruct(modules: moduleGroup, options: Options = {}): string
 		if (
 			mod.newName &&
 			mods[mod.newName] &&
-			mods[mod.newName].newName !== mod.newName &&
-			!mods[mod.newName].done
+			(mods[mod.newName].newName === mod.newName || mods[mod.newName].done)
 		)
 			return ''; // will be dealt with when main mod is called.
 		let code = getCode(mod, mods);
