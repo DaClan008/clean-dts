@@ -1,5 +1,13 @@
 import { lstat } from 'fs';
-import { moduleGroup, Options, Strategies, altered, member, codeType } from '../types/types';
+import {
+	moduleGroup,
+	Options,
+	Strategies,
+	altered,
+	member,
+	codeType,
+	members,
+} from '../types/types';
 
 function getCode(mod: altered, modules: moduleGroup, incl = false): string | false {
 	if (!mod) return false;
@@ -19,11 +27,26 @@ function getCode(mod: altered, modules: moduleGroup, incl = false): string | fal
 		if (grpNames[from]) grpNames[from].push(name);
 		else grpNames[from] = [name];
 	};
+	const listToString = (mem: members, val: string[]): string => {
+		if (mem == null) return val.join(', ');
+		let tmpText = '';
+		val.forEach(nme => {
+			if (tmpText !== '') tmpText += ', ';
+			if (mem[nme] && mem[nme].as) {
+				tmpText += `${mem[nme].name} as `;
+			}
+			tmpText += nme;
+		});
+		return tmpText;
+	};
+
 	const getGrp = (): string => {
 		let res = '';
 		const keys = Object.keys(grpNames);
 		keys.forEach(key => {
-			res += `export { ${grpNames[key].join(',')} }`;
+			const txt = listToString(mod.exports, grpNames[key]);
+			// grpNames[key].join(', ')
+			res += `export { ${txt} }`;
 			if (key) res += ` from '${key}'`;
 			res += ';';
 		});
@@ -102,7 +125,16 @@ function getCode(mod: altered, modules: moduleGroup, incl = false): string | fal
 			const grp = mod.groups[id];
 			if (port === 'im') {
 				if (name && !modules[name]) {
-					result += `import {${grp.join(',')}} from '${name}';`;
+					const tmpText = listToString(mod.imports, grp);
+					// grp.forEach(nme => {
+					// 	if (tmpText !== '') tmpText += ', ';
+					// 	if (mod.imports[nme] && mod.imports[nme].as) {
+					// 		tmpText += `${mod.imports[nme].name} as `;
+					// 	}
+					// 	tmpText += nme;
+					// });
+					// grp.join(',')
+					result += `import { ${tmpText} } from '${name}';`;
 				}
 			} else {
 				grp.forEach(exName => {
@@ -114,8 +146,10 @@ function getCode(mod: altered, modules: moduleGroup, incl = false): string | fal
 						(mod.exports[exName] && mod.exports[exName].value === false)
 					) {
 						/* istanbul ignore else: can't hit */
-						if (mod.exports[exName]) addGrp(exName, mod.exports[exName].from);
-						else if (mod.imports[exName])
+						if (mod.exports[exName]) {
+							const nme = exName;
+							addGrp(exName, mod.exports[exName].from);
+						} else if (mod.imports[exName])
 							addImport(mod.imports[exName].from, mod.imports[exName]);
 					} else {
 						const itm = mod.exports[exName];
