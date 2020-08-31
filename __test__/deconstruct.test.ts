@@ -1,7 +1,7 @@
 import { parseCode } from '../src/lib/deconstruct';
 import { resolve } from 'path';
 import { readFileSync } from 'fs';
-import { moduleGroup, altered, members } from '../src/types/types';
+import { moduleGroup, altered, members, Options } from '../src/types/types';
 const file2 = readFileSync(resolve(__dirname, 'mock/file2.txt')).toString();
 const file3 = readFileSync(resolve(__dirname, 'mock/file3.txt')).toString();
 const file5 = readFileSync(resolve(__dirname, 'mock/file5.txt')).toString();
@@ -10,6 +10,11 @@ const res2a = require('./mock/file2All.json');
 const res3 = require('./mock/file3.json');
 const res5 = require('./mock/file5.json');
 const res5b = require('./mock/file5b.json');
+const res6a = require('./mock/file6a.json');
+const res6b = require('./mock/file6b.json');
+const res6c = require('./mock/file6c.json');
+
+const file6 = readFileSync(resolve(__dirname, 'mock/file6.txt')).toString();
 
 function cleanObj(obj: any): any {
 	const newObj = obj;
@@ -58,5 +63,20 @@ describe('testing parseCode', () => {
 	test('mod option deconstruct without restrict option', () => {
 		const options = { mod: ['index:', 'lib/d1:index'] };
 		expect(c(parseCode(file5, options))).toMatchObject(c(res5b));
+	});
+
+	test('private variables default', () => {
+		const options = { all: 'someMod', mod: 'index' };
+		expect(c(parseCode(file6, options))).toMatchObject(c(res6a));
+	});
+
+	test('with private variables', () => {
+		const options: Options = { all: 'someMod', mod: 'index', includePrivates: true };
+		expect(c(parseCode(file6, options))).toMatchObject(c(res6b));
+	});
+
+	test('exclude protected variables', () => {
+		const options: Options = { all: 'someMod', mod: 'index', excludeProtected: true };
+		expect(c(parseCode(file6, options))).toMatchObject(c(res6c));
 	});
 });

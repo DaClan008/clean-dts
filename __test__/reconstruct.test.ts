@@ -13,6 +13,10 @@ const file4b = require('./mock/file4b.json');
 const file5 = require('./mock/file5.json');
 const file5b = require('./mock/file5b.json');
 
+const file6a = require('./mock/file6a.json');
+const file6b = require('./mock/file6b.json');
+const file6c = require('./mock/file6c.json');
+
 const file2DTS = readFileSync(resolve(__dirname, 'mock/file2dts.txt')).toString();
 const file2AllDts = readFileSync(resolve(__dirname, 'mock/file2Alldts.txt')).toString();
 const file2AllNameDts = readFileSync(resolve(__dirname, 'mock/file2AllNamedts.txt')).toString();
@@ -22,6 +26,9 @@ const file4DTS = readFileSync(resolve(__dirname, 'mock/file4dts.txt')).toString(
 const file4bDTS = readFileSync(resolve(__dirname, 'mock/file4bdts.txt')).toString();
 const file5DTS = readFileSync(resolve(__dirname, 'mock/file5dts.txt')).toString();
 const file5bDTS = readFileSync(resolve(__dirname, 'mock/file5bdts.txt')).toString();
+const file6aDTS = readFileSync(resolve(__dirname, 'mock/file6adts.txt')).toString();
+const file6bDTS = readFileSync(resolve(__dirname, 'mock/file6bdts.txt')).toString();
+const file6cDTS = readFileSync(resolve(__dirname, 'mock/file6cdts.txt')).toString();
 
 function c(val: string) {
 	return val.replace(/[\n\r\t ]+/g, ' ');
@@ -79,5 +86,21 @@ describe('testing reconstruction', () => {
 		const options = { mod: ['index:', 'lib/d1:index'] };
 		expect(c(reconstruct(file5b, options))).toEqual(c(file5bDTS));
 		clear(file5b);
+	});
+
+	test('reconstruct function on file 6a normal', () => {
+		const options = { all: 'someMod', mod: 'index' };
+		expect(c(reconstruct(file6a, options))).toEqual(c(file6aDTS));
+		clear(file6a);
+	});
+	test('reconstruct function on file 5 with mod options without restrict', () => {
+		const options = { mod: ['index:', 'lib/d1:index'] };
+		expect(c(reconstruct(file6b, options))).toEqual(c(file6bDTS));
+		clear(file6b);
+	});
+	test('reconstruct function on file 5 with mod options without restrict', () => {
+		const options = { mod: ['index:', 'lib/d1:index'] };
+		expect(c(reconstruct(file6c, options))).toEqual(c(file6cDTS));
+		clear(file6c);
 	});
 });

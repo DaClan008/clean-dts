@@ -1,0 +1,61 @@
+{
+    "/": {
+        "name": "/",
+        "code": "\r\n\r\n\r\n",
+        "comment": ""
+    },
+    "lib/itm1": {
+        "name": "lib/itm1",
+        "internals": {
+            "somMod": {
+                "owner": "lib/itm1",
+                "name": "somMod",
+                "type": 2,
+                "comment": "",
+                "prename": " class ",
+                "portType": "ex",
+                "code": "\r\n\t\tmanexport(): void;\r\n\t\t/**\r\n\t\t * This is first constructor\r\n\t\t * @param val1 val1 comment\r\n\t\t * @param val2 val2 comment\r\n\t\t */\r\n\t\tconstructor(val1: number, val2: string);\r\n\t\t/**\r\n\t\t * This is first constructor\r\n\t\t * @param val2 val2 comment\r\n\t\t * @param val3 val3 comment\r\n\t\t */\r\n\t\tconstructor(val2: string, val3: boolean);\r\n\r\n\t\t/** variable comment */\r\n\t\tprivate variable: string;\r\n\r\n\t\t/** readonly var comment */\r\n\t\tprivate readonly rovar: boolean;\r\n\r\n\t\t/** my protGetter comment */\r\n\t\tprotected get protGetter(): number;\r\n\r\n\t\tprotected set protGetter(val: number);\r\n\r\n\t\t/** getter comment */\r\n\t\tget getter(): string;\r\n\t\tset getter(val: string);\r\n\r\n\t\tprivate somFunc;\r\n\r\n\t\tpublicFunc(): void;\r\n\r\n\t\tpublicParamsFunc(par1: string, par2: number): number;\r\n\r\n\t\tprotected protFunc(par1: number): number;\r\n\t",
+                "used": true
+            }
+        },
+        "code": "\r\n\texport class somMod {\r\n\t\tmanexport(): void;\r\n\t\t/**\r\n\t\t * This is first constructor\r\n\t\t * @param val1 val1 comment\r\n\t\t * @param val2 val2 comment\r\n\t\t */\r\n\t\tconstructor(val1: number, val2: string);\r\n\t\t/**\r\n\t\t * This is first constructor\r\n\t\t * @param val2 val2 comment\r\n\t\t * @param val3 val3 comment\r\n\t\t */\r\n\t\tconstructor(val2: string, val3: boolean);\r\n\r\n\t\t/** variable comment */\r\n\t\tprivate variable: string;\r\n\r\n\t\t/** readonly var comment */\r\n\t\tprivate readonly rovar: boolean;\r\n\r\n\t\t/** my protGetter comment */\r\n\t\tprotected get protGetter(): number;\r\n\r\n\t\tprotected set protGetter(val: number);\r\n\r\n\t\t/** getter comment */\r\n\t\tget getter(): string;\r\n\t\tset getter(val: string);\r\n\r\n\t\tprivate somFunc;\r\n\r\n\t\tpublicFunc(): void;\r\n\r\n\t\tpublicParamsFunc(par1: string, par2: number): number;\r\n\r\n\t\tprotected protFunc(par1: number): number;\r\n\t}\r\n",
+        "comment": "",
+        "type": 2,
+        "used": true
+    },
+    "index": {
+        "name": "index",
+        "exports": {
+            "somMod": {
+                "from": "lib/itm1",
+                "name": "somMod",
+                "portType": "ex",
+                "complex": " somMod ",
+                "positionID": "index1",
+                "len": 1,
+                "group": true,
+                "value": {
+                    "owner": "lib/itm1",
+                    "name": "somMod",
+                    "type": 2,
+                    "comment": "",
+                    "prename": " class ",
+                    "portType": "ex",
+                    "code": "\r\n\t\tmanexport(): void;\r\n\t\t/**\r\n\t\t * This is first constructor\r\n\t\t * @param val1 val1 comment\r\n\t\t * @param val2 val2 comment\r\n\t\t */\r\n\t\tconstructor(val1: number, val2: string);\r\n\t\t/**\r\n\t\t * This is first constructor\r\n\t\t * @param val2 val2 comment\r\n\t\t * @param val3 val3 comment\r\n\t\t */\r\n\t\tconstructor(val2: string, val3: boolean);\r\n\r\n\t\t/** variable comment */\r\n\t\tprivate variable: string;\r\n\r\n\t\t/** readonly var comment */\r\n\t\tprivate readonly rovar: boolean;\r\n\r\n\t\t/** my protGetter comment */\r\n\t\tprotected get protGetter(): number;\r\n\r\n\t\tprotected set protGetter(val: number);\r\n\r\n\t\t/** getter comment */\r\n\t\tget getter(): string;\r\n\t\tset getter(val: string);\r\n\r\n\t\tprivate somFunc;\r\n\r\n\t\tpublicFunc(): void;\r\n\r\n\t\tpublicParamsFunc(par1: string, par2: number): number;\r\n\r\n\t\tprotected protFunc(par1: number): number;\r\n\t",
+                    "used": true
+                },
+                "include": true
+            }
+        },
+        "groups": {
+            "index1": [
+                "somMod"
+            ]
+        },
+        "code": "\r\n\t\n--replaceindex1=lib/itm1[grpex]\r\n",
+        "comment": "",
+        "type": 2,
+        "isMod": true,
+        "newName": "someMod"
+    }
+}

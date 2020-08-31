@@ -1,0 +1,44 @@
+declare module 'lib/itm1' {
+	export class somMod {
+		manexport(): void;
+		/**
+		 * This is first constructor
+		 * @param val1 val1 comment
+		 * @param val2 val2 comment
+		 */
+		constructor(val1: number, val2: string);
+		/**
+		 * This is first constructor
+		 * @param val2 val2 comment
+		 * @param val3 val3 comment
+		 */
+		constructor(val2: string, val3: boolean);
+
+		/** variable comment */
+		private variable: string;
+
+		/** readonly var comment */
+		private readonly rovar: boolean;
+
+		/** my protGetter comment */
+		protected get protGetter(): number;
+
+		protected set protGetter(val: number);
+
+		/** getter comment */
+		get getter(): string;
+		set getter(val: string);
+
+		private somFunc;
+
+		publicFunc(): void;
+
+		publicParamsFunc(par1: string, par2: number): number;
+
+		protected protFunc(par1: number): number;
+	}
+}
+
+declare module 'index' {
+	export { somMod } from 'lib/itm1';
+}

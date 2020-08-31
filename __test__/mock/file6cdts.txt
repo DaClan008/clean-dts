@@ -1,0 +1,41 @@
+declare module someMod {
+	
+	export class somMod{
+		manexport(): void;
+		/**
+		 * This is first constructor
+		 * @param val1 val1 comment
+		 * @param val2 val2 comment
+		 */
+		constructor(val1: number, val2: string);
+		/**
+		 * This is first constructor
+		 * @param val2 val2 comment
+		 * @param val3 val3 comment
+		 */
+		constructor(val2: string, val3: boolean);
+
+		
+		
+
+		
+		
+
+		
+		
+
+		
+
+		/** getter comment */
+		get getter(): string;
+		set getter(val: string);
+
+		
+
+		publicFunc(): void;
+
+		publicParamsFunc(par1: string, par2: number): number;
+
+		
+	}
+}
