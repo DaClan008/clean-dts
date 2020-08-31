@@ -9,7 +9,7 @@ declare module b {
 }
 declare module MOD {
 	export function abcfunc(def: string, other?: boolean, t=false): string;
-	export { abc2 };
+	export { abcfunc as abc2 };
 	
 	
 	export function a(): string;

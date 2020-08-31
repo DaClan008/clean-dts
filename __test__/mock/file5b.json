@@ -219,9 +219,9 @@
                 "from": "",
                 "name": "f1func1",
                 "portType": "ex",
-                "complex": " f1func1, resolve ",
+                "complex": " f1func1, res, sep ",
                 "positionID": "index7",
-                "len": 2,
+                "len": 3,
                 "group": true,
                 "value": {
                     "owner": "obj/f1",
@@ -235,13 +235,24 @@
                 },
                 "include": true
             },
-            "resolve": {
+            "res": {
                 "from": "",
-                "name": "resolve",
+                "name": "res",
                 "portType": "ex",
-                "complex": " f1func1, resolve ",
+                "complex": " f1func1, res, sep ",
                 "positionID": "index7",
-                "len": 2,
+                "len": 3,
+                "group": true,
+                "value": false,
+                "include": true
+            },
+            "sep": {
+                "from": "",
+                "name": "sep",
+                "portType": "ex",
+                "complex": " f1func1, res, sep ",
+                "positionID": "index7",
+                "len": 3,
                 "group": true,
                 "value": false,
                 "include": true
@@ -293,13 +304,24 @@
             "obj/f1"
         ],
         "imports": {
-            "resolve": {
+            "res": {
                 "from": "path",
                 "name": "resolve",
+                "as": "res",
                 "portType": "im",
-                "complex": "resolve",
+                "complex": "resolve as res, sep",
                 "positionID": "index6",
-                "len": 1,
+                "len": 2,
+                "group": true,
+                "value": false
+            },
+            "sep": {
+                "from": "path",
+                "name": "sep",
+                "portType": "im",
+                "complex": "resolve as res, sep",
+                "positionID": "index6",
+                "len": 2,
                 "group": true,
                 "value": false
             }
@@ -309,11 +331,13 @@
         ],
         "groups": {
             "index6": [
-                "resolve"
+                "res",
+                "sep"
             ],
             "index7": [
                 "f1func1",
-                "resolve"
+                "res",
+                "sep"
             ],
             "index10": [
                 "func2"

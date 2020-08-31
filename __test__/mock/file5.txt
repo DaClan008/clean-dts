@@ -34,8 +34,8 @@ declare module "lib/d1" {
 }
 declare module "index" {
     import "obj/f1";
-	import {resolve} from "path";
-    export { f1func1, resolve };
+	import {resolve as res, sep} from "path";
+    export { f1func1, res, sep };
     export * from "obj/f2";
     export MyClass from "obj/default";
 	export {f1func2 as func2} from "obj/f1";

@@ -1,7 +1,7 @@
 
     import 'obj/f1';
-	import {resolve} from 'path';
-    export { resolve };
+	import { resolve as res, sep } from 'path';
+    export { res, sep };
     /** f1func1 comment */
     export function f1func1(): void;
     
