@@ -246,6 +246,56 @@ export function parseCode(code: string, options: Options = {}): moduleGroup {
 			space = '';
 		}
 	};
+
+	const privateTest = (index: number): number => {
+		if (options.includePrivates && !options.excludeProtected) return 0;
+		let len = Math.min(9 + index, code.length);
+		let test = '';
+		// let currLen = 0;
+		for (let i = index; i < len; i++) {
+			const char = code[i];
+			if (char === ' ' || char === '\t' || char === '\r' || char === '\n') {
+				if (test !== 'private' && test !== 'protected') return 0;
+				i = len;
+			} else test += char;
+		}
+		if (test !== 'private' && test !== 'protected') return 0;
+		/* istanbul ignore if: tested separetely */
+		if (test === 'private' && options.includePrivates) return 0;
+		if (test === 'protected' && !options.excludeProtected) return 0;
+		// else remove private / protected values
+		comment = '';
+		len = code.length;
+		let brackets = 0;
+		for (let i = index + test.length; i < len; i++) {
+			const char = code[i];
+			switch (char) {
+				case ';':
+					/* istanbul ignore else: will probably never be hit - safety */
+					if (brackets === 0) return test.length;
+					/* istanbul ignore next */
+					test += char;
+					/* istanbul ignore next */
+					break;
+				/* istanbul ignore next: will probably never be hit - safety */
+				case '{':
+					brackets++;
+					test += '{';
+					break;
+				/* istanbul ignore next: will probably not be hit - safety */
+				case '}':
+					brackets--;
+					if (brackets === 0) return test.length;
+					break;
+				default:
+					test += char;
+					break;
+			}
+		}
+		/* istanbul ignore next: will probably never be hit - safety */
+		return test.length;
+	};
+
 	/**
 	 * See if there are any declare values
 	 * @param indx The index to get the declare section from.
@@ -440,6 +490,13 @@ export function parseCode(code: string, options: Options = {}): moduleGroup {
 					if (test === 0) addChar(char);
 					else i += test;
 				}
+				break;
+			case 'p':
+				// addChar('p');
+				// eslint-disable-next-line no-case-declarations
+				const test = privateTest(i);
+				if (test === 0) addChar('p');
+				else i += test;
 				break;
 			default:
 				addChar(char);

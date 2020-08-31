@@ -62,6 +62,8 @@ export function cleanDtsCli(args: string[]): void | string | Promise<void | stri
 	options.ext = parsedArgs.ext || '';
 	options.outputDir = parsedArgs.outputDir || parsedArgs.outputdir || '';
 	options.baseExt = parsedArgs.baseExt || parsedArgs.baseext || '';
+	options.includePrivates = parsedArgs.privates || false;
+	options.excludeProtected = parsedArgs.protected || false;
 	if (parsedArgs.mod) options.mod = parsedArgs.mod.split(',');
 	if (parsedArgs.restrict) options.restrict = parsedArgs.restrict;
 

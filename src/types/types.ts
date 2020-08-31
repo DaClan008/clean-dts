@@ -20,6 +20,8 @@ export type Options = {
 	outputDir?: string;
 	/** base Extension */
 	baseExt?: string;
+	includePrivates?: boolean;
+	excludeProtected?: boolean;
 };
 /* @internal */
 export type port = {

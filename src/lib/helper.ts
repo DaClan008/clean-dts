@@ -119,16 +119,32 @@ export function getComment(code: string, start: number): string {
  * @internal
  */
 export function testModule(code: string, start: number): number {
-	if (code.substr(start, 7) === 'declare') {
-		let space = '';
-		for (let i = start + 8, len = code.length; i < len; i++) {
-			const char = code[i];
-			/* istanbul ignore if */
-			if (/\s/.test(char)) space += char;
-			else if (char === 'm' && code.substr(i, 6) === 'module') return 7 + space.length + 6;
-			else return 7;
-		}
+	let i = start;
+	const len = code.length;
+	let str = '';
+	let spaces = '';
+	let result = '';
+
+	for (; i < len; i++) {
+		const char = code[i];
+		if (char === ' ' || char === '\t' || char === '\n' || char === '\r') {
+			if (str) {
+				switch (str) {
+					case 'declare':
+						result = 'declare';
+						str = '';
+						spaces = char;
+						break;
+					case 'module':
+						result += `${spaces}module`;
+						return result.length;
+					default:
+						return result.length;
+				}
+			} else spaces += char;
+		} else str += char;
 	}
+	/* istanbul ignore next: will probably never be hit - safety */
 	return 0;
 }
 /** @internal */
