@@ -1,4 +1,5 @@
 import { lstat } from 'fs';
+// eslint-disable-next-line object-curly-newline
 import {
 	moduleGroup,
 	Options,
@@ -7,6 +8,7 @@ import {
 	member,
 	codeType,
 	members,
+	// eslint-disable-next-line object-curly-newline
 } from '../types/types';
 
 function getCode(mod: altered, modules: moduleGroup, incl = false): string | false {
