@@ -7,13 +7,18 @@ import { cleanDtsCli } from '../src/cli/cleanDTScli';
 
 const DTS = true;
 
+const folder = './__test__/mock/';
+const ext = '.txt';
+// const folder = './playground/';
+// const ext = '.d.ts';
+
 function createFiles(fileName, options = {}, storeName = '') {
-	const file = readFileSync(resolve(`./__test__/mock/${fileName}.txt`)).toString();
+	const file = readFileSync(resolve(`${folder}${fileName}${ext}`)).toString();
 	const val = parseCode(file, options);
 	let store = storeName || fileName;
 	if (DTS) {
 		const code = val ? reconstruct(val, options) : '';
-		writeFileSync(resolve(`./__test__/mock/${store}dts.txt`), code);
+		writeFileSync(resolve(`${folder}${store}dts.txt`), code);
 	}
 	Object.keys(val).forEach(key => {
 		if (val[key].exports) {
@@ -42,7 +47,7 @@ function createFiles(fileName, options = {}, storeName = '') {
 		// if (!val['/'].comment) delete val['/'].comment;
 		// if (Object.keys(val['/']).length === 1) delete val['/'];
 	}
-	if (val) writeFileSync(resolve(`./__test__/mock/${store}.json`), JSON.stringify(val, null, 4));
+	if (val) writeFileSync(resolve(`${folder}${store}.json`), JSON.stringify(val, null, 4));
 }
 
 createFiles('file2');
@@ -54,3 +59,13 @@ createFiles('file4', { storeStrategy: Strategies.keepAll });
 createFiles('file4', { storeStrategy: Strategies.keepPartial }, 'file4b');
 createFiles('file5', { mod: ['index', 'lib/d1:index'], all: 'some', restrict: true });
 createFiles('file5', { mod: ['index:', 'lib/d1:index'] }, 'file5b');
+
+// const options = {
+// 	mod: 'index',
+// 	all: 'to-table',
+// 	restrict: true,
+// 	newName: 'index2',
+// 	excludeProtected: true,
+// };
+
+// createFiles('index', options, 'index2');

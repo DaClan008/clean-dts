@@ -128,14 +128,6 @@ function getCode(mod: altered, modules: moduleGroup, incl = false): string | fal
 			if (port === 'im') {
 				if (name && !modules[name]) {
 					const tmpText = listToString(mod.imports, grp);
-					// grp.forEach(nme => {
-					// 	if (tmpText !== '') tmpText += ', ';
-					// 	if (mod.imports[nme] && mod.imports[nme].as) {
-					// 		tmpText += `${mod.imports[nme].name} as `;
-					// 	}
-					// 	tmpText += nme;
-					// });
-					// grp.join(',')
 					result += `import { ${tmpText} } from '${name}';`;
 				}
 			} else {
@@ -149,7 +141,6 @@ function getCode(mod: altered, modules: moduleGroup, incl = false): string | fal
 					) {
 						/* istanbul ignore else: can't hit */
 						if (mod.exports[exName]) {
-							const nme = exName;
 							addGrp(exName, mod.exports[exName].from);
 						} else if (mod.imports[exName])
 							addImport(mod.imports[exName].from, mod.imports[exName]);

@@ -32,24 +32,33 @@ function getName(code: string, indx: number): nameResult {
 	let i = indx;
 	let space = '';
 	const len = code.length;
+	let prev = '';
+	let str = '';
+	let char = '';
 	while (i < len && /\{|\(|=|;|:/.test(code[i]) === false) {
-		if (/\s/.test(code[i])) space += code[i];
-		else {
-			if (space) {
-				result.pre += result.name + space;
-				result.full += space;
-				result.name = '';
-				space = '';
-			}
-			result.name += code[i];
-			result.full += code[i];
-		}
+		char = code[i];
+		if (!result.name && /\s/.test(char)) {
+			if (str) {
+				if (/(extends|implements)/.test(str)) {
+					result.name = prev;
+					prev = '';
+				} else {
+					result.pre += !prev ? space : `${prev}${space}`;
+					prev = str;
+					str = '';
+					space = char;
+				}
+			} else space += char;
+		} else if (!result.name) str += char;
+		result.full += char;
 		i++;
 	}
-	if (code[i] === '(') result.codeType = codeType.roundBracket;
-	if (code[i] === '{') result.codeType = codeType.curlyBracket;
-	if (code[i] === '=') result.codeType = codeType.equal;
-	if (result.codeType != null) result.full += `${space}${code[i]}`;
+	char = code[i];
+	if (!result.name) result.name = prev;
+	if (char === '(') result.codeType = codeType.roundBracket;
+	if (char === '{') result.codeType = codeType.curlyBracket;
+	if (char === '=') result.codeType = codeType.equal;
+	if (result.codeType != null) result.full += `${char}`;
 	return result;
 }
 /**
@@ -247,6 +256,16 @@ export function parseCode(code: string, options: Options = {}): moduleGroup {
 		}
 	};
 
+	const removeSpaces = () => {
+		const reg = /[\r\n\t ]*$/;
+		space = '';
+		result[currentName].code = result[currentName].code.replace(reg, '');
+		if (!internal) return;
+		result[currentName].internals[internal].code = result[currentName].internals[
+			internal
+		].code.replace(reg, '');
+	};
+
 	const privateTest = (index: number): number => {
 		if (options.includePrivates && !options.excludeProtected) return 0;
 		let len = Math.min(9 + index, code.length);
@@ -265,6 +284,8 @@ export function parseCode(code: string, options: Options = {}): moduleGroup {
 		if (test === 'protected' && !options.excludeProtected) return 0;
 		// else remove private / protected values
 		comment = '';
+		removeSpaces();
+		// console.log('--', removes, removes.length);
 		len = code.length;
 		let brackets = 0;
 		for (let i = index + test.length; i < len; i++) {
@@ -492,7 +513,6 @@ export function parseCode(code: string, options: Options = {}): moduleGroup {
 				}
 				break;
 			case 'p':
-				// addChar('p');
 				// eslint-disable-next-line no-case-declarations
 				const test = privateTest(i);
 				if (test === 0) addChar('p');
