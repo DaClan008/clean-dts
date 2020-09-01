@@ -4,9 +4,8 @@ declare module index {
 declare module some {
     import 'obj/f1';
 	import { resolve as res, sep } from 'path';
-    export { res, sep };
-    /** f1func1 comment */
-    export function f1func1(): void;
+    export { f1func1, res, sep };
+    
     
     export namespace f2Namespace {
     }
@@ -14,9 +13,8 @@ declare module some {
     export class MyClass{
 		constructor();
 	}
+	export { f1func2 as func2 } from 'obj/f1';
 	
-	/** f1func2 comment */
-    export function func2(): void;
 
 	export function d1Func1(): boolean;
 }

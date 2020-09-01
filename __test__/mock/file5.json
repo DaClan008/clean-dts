@@ -7,33 +7,21 @@
     "obj/f1": {
         "name": "obj/f1",
         "internals": {
-            "f1func1": {
+            "function": {
                 "owner": "obj/f1",
-                "name": "f1func1",
-                "type": 1,
-                "comment": "/** f1func1 comment */\r\n    ",
-                "prename": " function ",
-                "portType": "ex",
-                "code": "(): void;",
-                "used": true
-            },
-            "f1func2": {
-                "owner": "obj/f1",
-                "name": "f1func2",
+                "name": "function",
                 "type": 1,
                 "comment": "/** f1func2 comment */\r\n    ",
-                "prename": " function ",
+                "prename": " ",
                 "portType": "ex",
-                "code": "(): void;",
-                "used": true
+                "code": "(): void;"
             }
         },
         "code": "\r\n    declare function a(): string;\r\n    /** f1func1 comment */\r\n    export function f1func1(): void;\r\n    /** f1func2 comment */\r\n    export function f1func2(): void;\r\n",
         "comment": "",
         "type": 2,
         "hasDeclare": true,
-        "allused": true,
-        "used": true
+        "allused": true
     },
     "obj/f2": {
         "name": "obj/f2",
@@ -65,16 +53,7 @@
                 "len": 1,
                 "group": true,
                 "comment": "/** my new func1 */\r\n    ",
-                "value": {
-                    "owner": "obj/f1",
-                    "name": "f1func1",
-                    "type": 1,
-                    "comment": "/** f1func1 comment */\r\n    ",
-                    "prename": " function ",
-                    "portType": "ex",
-                    "code": "(): void;",
-                    "used": true
-                }
+                "value": false
             },
             "f1func1": {
                 "from": "",
@@ -84,16 +63,7 @@
                 "positionID": "obj/f34",
                 "len": 1,
                 "group": true,
-                "value": {
-                    "owner": "obj/f1",
-                    "name": "f1func1",
-                    "type": 1,
-                    "comment": "/** f1func1 comment */\r\n    ",
-                    "prename": " function ",
-                    "portType": "ex",
-                    "code": "(): void;",
-                    "used": true
-                }
+                "value": false
             }
         },
         "imports": {
@@ -106,16 +76,7 @@
                 "positionID": "obj/f31",
                 "len": 1,
                 "group": true,
-                "value": {
-                    "owner": "obj/f1",
-                    "name": "f1func1",
-                    "type": 1,
-                    "comment": "/** f1func1 comment */\r\n    ",
-                    "prename": " function ",
-                    "portType": "ex",
-                    "code": "(): void;",
-                    "used": true
-                }
+                "value": false
             },
             "f1func1": {
                 "from": "obj/f1",
@@ -125,16 +86,7 @@
                 "positionID": "obj/f32",
                 "len": 1,
                 "group": true,
-                "value": {
-                    "owner": "obj/f1",
-                    "name": "f1func1",
-                    "type": 1,
-                    "comment": "/** f1func1 comment */\r\n    ",
-                    "prename": " function ",
-                    "portType": "ex",
-                    "code": "(): void;",
-                    "used": true
-                }
+                "value": false
             }
         },
         "groups": {
@@ -152,11 +104,11 @@
             ]
         },
         "internals": {
-            "f3Type": {
+            "type": {
                 "owner": "obj/f3",
-                "name": "f3Type",
+                "name": "type",
                 "comment": "/**\r\n     * a new type\r\n     */\r\n    ",
-                "prename": " type ",
+                "prename": " ",
                 "portType": "ex",
                 "code": ": string | boolean;"
             }
@@ -196,12 +148,12 @@
     "lib/d1": {
         "name": "lib/d1",
         "internals": {
-            "d1Func1": {
+            "function": {
                 "owner": "lib/d1",
-                "name": "d1Func1",
+                "name": "function",
                 "type": 1,
                 "comment": "",
-                "prename": " function ",
+                "prename": " ",
                 "portType": "ex",
                 "code": "(): boolean;"
             }
@@ -223,16 +175,7 @@
                 "positionID": "index7",
                 "len": 3,
                 "group": true,
-                "value": {
-                    "owner": "obj/f1",
-                    "name": "f1func1",
-                    "type": 1,
-                    "comment": "/** f1func1 comment */\r\n    ",
-                    "prename": " function ",
-                    "portType": "ex",
-                    "code": "(): void;",
-                    "used": true
-                },
+                "value": false,
                 "include": true
             },
             "res": {
@@ -286,16 +229,7 @@
                 "positionID": "index10",
                 "len": 1,
                 "group": true,
-                "value": {
-                    "owner": "obj/f1",
-                    "name": "f1func2",
-                    "type": 1,
-                    "comment": "/** f1func2 comment */\r\n    ",
-                    "prename": " function ",
-                    "portType": "ex",
-                    "code": "(): void;",
-                    "used": true
-                },
+                "value": false,
                 "include": true
             }
         },

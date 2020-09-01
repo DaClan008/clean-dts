@@ -7,12 +7,12 @@
     "a": {
         "name": "a",
         "internals": {
-            "a": {
+            "function": {
                 "owner": "a",
-                "name": "a",
+                "name": "function",
                 "type": 1,
                 "comment": "",
-                "prename": " function ",
+                "prename": " ",
                 "portType": "ex",
                 "code": "(): string;"
             }
@@ -25,12 +25,12 @@
     "b": {
         "name": "b",
         "internals": {
-            "b": {
+            "function": {
                 "owner": "b",
-                "name": "b",
+                "name": "function",
                 "type": 1,
                 "comment": "",
-                "prename": " function ",
+                "prename": " ",
                 "portType": "ex",
                 "code": "(): string;"
             }
@@ -53,15 +53,7 @@
                 "positionID": "abc1",
                 "len": 1,
                 "group": true,
-                "value": {
-                    "owner": "abc",
-                    "name": "abcfunc",
-                    "type": 1,
-                    "comment": "",
-                    "prename": " function ",
-                    "portType": "ex",
-                    "code": "(def: string, other?: boolean, t=false): string;"
-                }
+                "value": false
             }
         },
         "exportStr": [
@@ -74,12 +66,12 @@
             ]
         },
         "internals": {
-            "abcfunc": {
+            "function": {
                 "owner": "abc",
-                "name": "abcfunc",
+                "name": "function",
                 "type": 1,
                 "comment": "",
-                "prename": " function ",
+                "prename": " ",
                 "portType": "ex",
                 "code": "(def: string, other?: boolean, t=false): string;"
             }

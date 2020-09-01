@@ -11,21 +11,18 @@ declare module 'lib/d1' {
 declare module boks {
     import 'obj/f1';
 	import { resolve } from 'path';
-    export { resolve };
-    /** f1func1 comment */
-    export function f1func1(): void;
+    export { f1func1, resolve };
+    
     
     export namespace f2Namespace {
     }
 
     /** my new comment */
 	export namespace f3add {
+    export { func1 };
     
-    /** f1func1 comment */
-    export function func1(): void;
+    export { f1func1 };
     
-    /** f1func1 comment */
-    export function f1func1(): void;
     // some other comment
     /**
      * a new type
@@ -35,9 +32,8 @@ declare module boks {
     export class MyClass{
 		constructor();
 	}
+	export { f1func2 as func2 } from 'obj/f1';
 	
-	/** f1func2 comment */
-    export function func2(): void;
     
     export { d1Func1 } from 'lib/d1';
     
